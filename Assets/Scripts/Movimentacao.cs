@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Movimentacao : MonoBehaviour
@@ -11,13 +12,18 @@ public class Movimentacao : MonoBehaviour
     [SerializeField]private float forcaPulo;
     [SerializeField]private bool invertH;
     [SerializeField]private bool invertV;
-    [SerializeField]private int pontos;
-    [SerializeField]private bool estaVivo;
+    [Header("Sons da Bolinha")]
+    [SerializeField] private AudioClip pulo;
+    [SerializeField] private AudioClip pegaCubo;
+    [SerializeField] private AudioSource audioPlayer;
+    [SerializeField]public static int pontos;
+    [SerializeField]public static bool estaVivo;
     // Start is called before the first frame update
     void Start()
     {
         estaVivo = true;
         rb = GetComponent<Rigidbody>();
+        audioPlayer = GetComponent<AudioSource>();
     
     }
 
@@ -28,7 +34,7 @@ public class Movimentacao : MonoBehaviour
         {
             moveV = Input.GetAxis("Vertical");
             moveH = Input.GetAxis("Horizontal");
-            transform.position += new Vector3(moveH * Time.deltaTime, 0, moveV * Time.deltaTime );
+            transform.position += new Vector3(moveH * velocidade * Time.deltaTime, 0, moveV * velocidade *Time.deltaTime );
 
             //Pulo
             if(Input.GetKeyDown(KeyCode.Space))
@@ -38,16 +44,21 @@ public class Movimentacao : MonoBehaviour
         }
         
     }
-    private void OnTriggerEnter(Collider other)
+    
+    private void OnTriggerEnter(Collider cubo)
     {
-        Destroy(this.gameObject);
+        Destroy(cubo.gameObject);
+        audioPlayer.PlayOneShot(pegaCubo);
+        pontos++;
     }
-    private void OnColisionEnter(Collision other)
+
+    private void OnCollisionEnter(Collision Lava)
     {
-        if(other.gameObject.CompareTag("Lava"))
+        if(Lava.gameObject.CompareTag("Lava"))
         {
             estaVivo = false;
             Time.timeScale = 0;
         }
     }
+
 }
