@@ -40,6 +40,7 @@ public class Movimentacao : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Space))
             {
                 rb.AddForce(transform.up * forcaPulo, ForceMode.Impulse);
+                audioPlayer.PlayOneShot(pulo);
             }  
         }
         

@@ -7,6 +7,7 @@ public class Textos : MonoBehaviour
 {
     public TextMeshProUGUI textoPontos;
     public TextMeshProUGUI textoDeveres;
+    public TextMeshProUGUI Creditos;
     // Start is called before the first frame update
     void Start()
     {
