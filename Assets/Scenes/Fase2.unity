@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 63056377}
   m_Layer: 0
   m_Name: Portal
-  m_TagString: Untagged
+  m_TagString: Portal2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -642,8 +642,10 @@ MonoBehaviour:
   invertH: 0
   invertV: 0
   pulo: {fileID: 8300000, guid: 3d92497b0586506419edb1c8cbfb82f1, type: 3}
+  morte: {fileID: 0}
   pegaCubo: {fileID: 8300000, guid: b345fd1d8a057da49acda632b8f1d87e, type: 3}
   audioPlayer: {fileID: 0}
+  posicaoInicial: {x: 0, y: 0, z: 0}
 --- !u!54 &210317941
 Rigidbody:
   m_ObjectHideFlags: 0
